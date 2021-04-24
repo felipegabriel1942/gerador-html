@@ -8,6 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   @Output() onAddField = new EventEmitter();
+  @Output() onAddText = new EventEmitter();
 
   constructor() { }
 

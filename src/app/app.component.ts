@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Field } from './models/field.model';
+import { Text } from './models/text.model';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { Field } from './models/field.model';
 })
 export class AppComponent implements OnInit {
   fields: Field[] = [];
-  html: string = '';
+  texts: Text[] = [];
 
   constructor() {}
 
@@ -16,17 +17,34 @@ export class AppComponent implements OnInit {
 
   addField(): void {
     this.fields.push(new Field());
+  }
 
+  addText(): void {
+    this.texts.push(new Text());
   }
 
   generateHtml(): void {
-    this.fields.forEach((field) => {
-      this.html += `<div style="top:${field.y};left:${field.x};width:${field.width};height:${field.height};border: 1px solid black; position: absolute;"> </div>`;
-    });
-    console.log(this.html);
+    let html = '';
+
+    html = this.generateFields(html);
+    html = this.genereateTexts(html);
+
+    console.log(html);
   }
 
-  createFieldsHtml(): void {
+  generateFields(html: string): string {
+    this.fields.map((field) => {
+      html += `<div style="top:${field.y};left:${field.x};width:${field.width};height:${field.height};border: 1px solid black;position: absolute;"> </div>`;
+    });
 
+    return html;
+  }
+
+  genereateTexts(html: string): string {
+    this.texts.forEach((text) => {
+      html += `<input style="top:${text.y};left:${text.x};width:${text.width};height:${text.height};position: absolute; border: 0; background-color: rgba(0, 0, 0, 0);" value="${text.text}"/>`;
+    });
+
+    return html;
   }
 }

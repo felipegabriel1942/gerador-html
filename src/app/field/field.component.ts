@@ -13,65 +13,65 @@ export class FieldComponent implements OnInit {
   draggingCorner: boolean;
   draggingWindow: boolean;
   resizer: Function;
+  innerWidth = window.innerWidth;
 
   constructor() {}
 
   ngOnInit(): void {
+    this.field.x = (this.innerWidth * 0.25) + 1;
     this.draggingCorner = false;
     this.draggingWindow = false;
     this.minArea = 15000;
   }
 
-  onWindowPress(event: MouseEvent) {
+  onWindowPress(event: MouseEvent): void {
     this.draggingWindow = true;
     this.field.px = event.clientX;
     this.field.py = event.clientY;
-    console.log(this.draggingWindow, this.field.px, this.field.py);
   }
 
-  onWindowDrag(event: MouseEvent) {
+  onWindowDrag(event: MouseEvent): void {
     if (!this.draggingWindow) {
       return;
     }
+    const offsetX = event.clientX - this.field.px;
+    const offsetY = event.clientY - this.field.py;
 
-    let offsetX = event.clientX - this.field.px;
-    let offsetY = event.clientY - this.field.py;
-
-    this.field.x += offsetX;
-    this.field.y += offsetY;
-    this.field.px = event.clientX;
-    this.field.py = event.clientY;
-    console.log('dragging window...');
+    if (this.field.x + offsetX >= this.innerWidth * 0.25) {
+      this.field.x += offsetX;
+      this.field.y += offsetY;
+      this.field.px = event.clientX;
+      this.field.py = event.clientY;
+    }
   }
 
-  bottomRightResize(offsetX: number, offsetY: number) {
+  bottomRightResize(offsetX: number, offsetY: number): void {
     this.field.width += offsetX;
     this.field.height += offsetY;
   }
 
-  onCornerClick(event: MouseEvent, resizer?: Function) {
+  onCornerClick(event: MouseEvent, resizer?: Function): void {
     this.draggingCorner = true;
     this.field.px = event.clientX;
     this.field.py = event.clientY;
     this.resizer = resizer;
     event.preventDefault();
     event.stopPropagation();
-    console.log('corner clicked...');
   }
 
   @HostListener('document:mousemove', ['$event'])
-  onCornerMove(event: MouseEvent) {
+  onCornerMove(event: MouseEvent): void {
     if (!this.draggingCorner) {
       return;
     }
 
-    let offsetX = event.clientX - this.field.px;
-    let offsetY = event.clientY - this.field.py;
+    const offsetX = event.clientX - this.field.px;
+    const offsetY = event.clientY - this.field.py;
 
-    let lastX = this.field.x;
-    let lastY = this.field.y;
-    let pWidth = this.field.width;
-    let pHeight = this.field.height;
+    const lastX = this.field.x;
+    const lastY = this.field.y;
+    const pWidth = this.field.width;
+    const pHeight = this.field.height;
 
     this.resizer(offsetX, offsetY);
     if (this.area() < this.minArea) {
@@ -83,17 +83,20 @@ export class FieldComponent implements OnInit {
 
     this.field.px = event.clientX;
     this.field.py = event.clientY;
-    console.log('resizing...')
   }
 
   @HostListener('document: mouseup', ['$event'])
-  onCornerRelease(event: MouseEvent) {
+  onCornerRelease(event: MouseEvent): void {
     this.draggingWindow = false;
     this.draggingCorner = false;
-    console.log('field released...');
   }
 
-  area() {
+  area(): number {
     return this.field.width * this.field.height;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event): void {
+    this.innerWidth = event.target.innerWidt;
   }
 }

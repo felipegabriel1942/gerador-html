@@ -3,22 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ResizableDraggableComponent } from './resizable-draggable/resizable-draggable.component';
-import { ChatWindowComponent } from './chat-window/chat-window.component';
 import { FieldComponent } from './field/field.component';
 import { MenuComponent } from './menu/menu.component';
+import { TextComponent } from './text/text.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ResizableDraggableComponent,
-    ChatWindowComponent,
     FieldComponent,
-    MenuComponent
+    MenuComponent,
+    TextComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    CommonModule,
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

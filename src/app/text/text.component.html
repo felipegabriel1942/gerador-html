@@ -1,0 +1,10 @@
+<input
+  id="field"
+  [(ngModel)]="text.text"
+  [style.top.px]="text.y"
+  [style.left.px]="text.x"
+  [style.width.px]="text.width"
+  [style.height.px]="text.height"
+  (mousedown)="onWindowPress($event)"
+  (mousemove)="onWindowDrag($event)"
+>

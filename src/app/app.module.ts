@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { ResizableDraggableComponent } from './resizable-draggable/resizable-draggable.component';
 import { ChatWindowComponent } from './chat-window/chat-window.component';
 import { FieldComponent } from './field/field.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ResizableDraggableComponent,
     ChatWindowComponent,
-    FieldComponent
+    FieldComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

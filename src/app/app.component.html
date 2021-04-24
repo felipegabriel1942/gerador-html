@@ -1,1 +1,19 @@
-<app-field></app-field>
+<div class="row mx-0 h-100">
+  <div class="col-md-3 menu">
+    <app-menu (onAddField)="addField()"></app-menu>
+  </div>
+  <div class="col-md-9">
+    <div *ngFor="let field of fields">
+      <app-field
+        [x]="field.x"
+        [y]="field.y"
+        [px]="field.px"
+        [py]="field.py"
+        [width]="field.width"
+        [height]="field.height"
+      ></app-field>
+    </div>
+
+    <button class="btn btn-primary" (click)="fieldsState()">Status</button>
+  </div>
+</div>

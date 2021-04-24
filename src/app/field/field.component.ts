@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-field',
@@ -6,12 +6,12 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./field.component.css'],
 })
 export class FieldComponent implements OnInit {
-  x: number;
-  y: number;
-  px: number;
-  py: number;
-  width: number;
-  height: number;
+  @Input() x: number;
+  @Input() y: number;
+  @Input() px: number;
+  @Input() py: number;
+  @Input() width: number;
+  @Input() height: number;
   minArea: number;
   draggingCorner: boolean;
   draggingWindow: boolean;
@@ -20,12 +20,6 @@ export class FieldComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.x = 300;
-    this.y = 100;
-    this.px = 0;
-    this.py = 0;
-    this.width = 600;
-    this.height = 300;
     this.draggingCorner = false;
     this.draggingWindow = false;
     this.minArea = 15000;

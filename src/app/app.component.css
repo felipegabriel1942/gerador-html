@@ -20,4 +20,7 @@
   transform: translate3d(-100%, -50%, 0);
 }
 
+.menu {
+  border-right: 1px solid gray;
+}
 

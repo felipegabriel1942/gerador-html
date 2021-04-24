@@ -1,0 +1,15 @@
+<div
+  id="field"
+  [style.top.px]="y"
+  [style.left.px]="x"
+  [style.width.px]="width"
+  [style.height.px]="height"
+  (mousedown)="onWindowPress($event)"
+  (mousemove)="onWindowDrag($event)"
+>
+  <div
+    id="field-bottom-right-resize"
+    (mousedown)="onCornerClick($event, bottomRightResize)"
+    class="field-corner-resize"
+  ></div>
+</div>

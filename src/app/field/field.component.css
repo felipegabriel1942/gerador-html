@@ -1,0 +1,21 @@
+#field {
+  position: fixed;
+  border: 1px solid black;
+}
+
+.field-corner-resize {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+}
+
+#field-top-left-resize {
+  top: 0px;
+  left: 0px;
+}
+
+#field-bottom-right-resize {
+  bottom: 0px;
+  right: 0px;
+}

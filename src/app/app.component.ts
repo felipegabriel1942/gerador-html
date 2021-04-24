@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Field } from './models/field.model';
 
 @Component({
   selector: 'app-root',
@@ -6,16 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  field = {
-    x: 300,
-    y: 100,
-    px: 0,
-    py: 0,
-    width: 300,
-    height: 50
-  };
-
-  fields = [];
+  fields: Field[] = [];
 
   constructor() {}
 
@@ -24,7 +16,7 @@ export class AppComponent implements OnInit{
   }
 
   addField() {
-    this.fields.push(this.field);
+    this.fields.push(new Field());
   }
 
   fieldsState() {

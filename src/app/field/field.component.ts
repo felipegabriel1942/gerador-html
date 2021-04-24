@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Field } from '../models/field.model';
 
 @Component({
   selector: 'app-field',
@@ -6,12 +7,8 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
   styleUrls: ['./field.component.css'],
 })
 export class FieldComponent implements OnInit {
-  @Input() x: number;
-  @Input() y: number;
-  @Input() px: number;
-  @Input() py: number;
-  @Input() width: number;
-  @Input() height: number;
+  @Input() field: Field;
+
   minArea: number;
   draggingCorner: boolean;
   draggingWindow: boolean;
@@ -27,9 +24,9 @@ export class FieldComponent implements OnInit {
 
   onWindowPress(event: MouseEvent) {
     this.draggingWindow = true;
-    this.px = event.clientX;
-    this.py = event.clientY;
-    console.log(this.draggingWindow, this.px, this.py);
+    this.field.px = event.clientX;
+    this.field.py = event.clientY;
+    console.log(this.draggingWindow, this.field.px, this.field.py);
   }
 
   onWindowDrag(event: MouseEvent) {
@@ -37,25 +34,25 @@ export class FieldComponent implements OnInit {
       return;
     }
 
-    let offsetX = event.clientX - this.px;
-    let offsetY = event.clientY - this.py;
+    let offsetX = event.clientX - this.field.px;
+    let offsetY = event.clientY - this.field.py;
 
-    this.x += offsetX;
-    this.y += offsetY;
-    this.px = event.clientX;
-    this.py = event.clientY;
+    this.field.x += offsetX;
+    this.field.y += offsetY;
+    this.field.px = event.clientX;
+    this.field.py = event.clientY;
     console.log('dragging window...');
   }
 
   bottomRightResize(offsetX: number, offsetY: number) {
-    this.width += offsetX;
-    this.height += offsetY;
+    this.field.width += offsetX;
+    this.field.height += offsetY;
   }
 
   onCornerClick(event: MouseEvent, resizer?: Function) {
     this.draggingCorner = true;
-    this.px = event.clientX;
-    this.py = event.clientY;
+    this.field.px = event.clientX;
+    this.field.py = event.clientY;
     this.resizer = resizer;
     event.preventDefault();
     event.stopPropagation();
@@ -68,24 +65,24 @@ export class FieldComponent implements OnInit {
       return;
     }
 
-    let offsetX = event.clientX - this.px;
-    let offsetY = event.clientY - this.py;
+    let offsetX = event.clientX - this.field.px;
+    let offsetY = event.clientY - this.field.py;
 
-    let lastX = this.x;
-    let lastY = this.y;
-    let pWidth = this.width;
-    let pHeight = this.height;
+    let lastX = this.field.x;
+    let lastY = this.field.y;
+    let pWidth = this.field.width;
+    let pHeight = this.field.height;
 
     this.resizer(offsetX, offsetY);
     if (this.area() < this.minArea) {
-      this.x = lastX;
-      this.y = lastY;
-      this.width = pWidth;
-      this.height = pHeight;
+      this.field.x = lastX;
+      this.field.y = lastY;
+      this.field.width = pWidth;
+      this.field.height = pHeight;
     }
 
-    this.px = event.clientX;
-    this.py = event.clientY;
+    this.field.px = event.clientX;
+    this.field.py = event.clientY;
     console.log('resizing...')
   }
 
@@ -97,6 +94,6 @@ export class FieldComponent implements OnInit {
   }
 
   area() {
-    return this.width * this.height;
+    return this.field.width * this.field.height;
   }
 }

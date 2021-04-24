@@ -1,4 +1,22 @@
 <div class="container p-2">
-  <button class="btn btn-primary" (click)="onAddField.emit()">Field</button>
-  <button class="btn btn-info" (click)="onAddText.emit()">Text</button>
+  <div class="row mx-0">
+    <h5>Componentes</h5>
+  </div>
+  <hr>
+  <div class="row d-flex justify-content-center">
+    <div
+      class="p-4 col-md-5 mx-1 menu-item-container"
+      title="Retângulo"
+      (click)="onAddField.emit()"
+    >
+      <div class="rectangle"></div>
+    </div>
+    <div
+      class="p-4 col-md-5 mx-1 menu-item-container"
+      title="Texto"
+      (click)="onAddText.emit()"
+    >
+      <div style="height: 60px">ABC</div>
+    </div>
+  </div>
 </div>

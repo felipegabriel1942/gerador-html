@@ -1,0 +1,14 @@
+.rectangle {
+  border: 1px solid black;
+  height: 60px;
+}
+
+.menu-item-container {
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.menu-item-container:hover {
+  background-color: rgb(233, 231, 231);
+}

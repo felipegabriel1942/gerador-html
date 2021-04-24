@@ -2,7 +2,7 @@
   <div class="col-md-3 menu">
     <app-menu (onAddField)="addField()" (onAddText)="addText()"></app-menu>
   </div>
-  <div class="col-md-9" >
+  <div class="col-md-9">
     <div *ngFor="let field of fields">
       <app-field [field]="field"></app-field>
     </div>
@@ -11,6 +11,15 @@
       <app-text [text]="text"></app-text>
     </div>
 
-    <button class="btn btn-primary" (click)="generateHtml()">Gerar HTML</button>
+    <div class="row">
+      <button class="btn btn-primary float-right mt-2 mx-1" (click)="generateHtml()">
+        Gerar HTML
+      </button>
+      <button class="btn btn-danger float-right mt-2 mx-1" (click)="clear()">
+        Limpar
+      </button>
+    </div>
+    <hr>
+
   </div>
 </div>

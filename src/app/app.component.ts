@@ -23,6 +23,11 @@ export class AppComponent implements OnInit {
     this.texts.push(new Text());
   }
 
+  clear(): void {
+    this.fields = [];
+    this.texts = [];
+  }
+
   generateHtml(): void {
     let html = '';
 

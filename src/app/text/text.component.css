@@ -4,12 +4,11 @@
   height: auto;
   border: 1px dashed rgb(218, 214, 214);
   background-color: rgba(128, 128, 128, 0);
+  cursor: all-scroll;
 }
 
 .field-corner-resize {
   position: absolute;
-  /* width: 10px;
-  height: 10px; */
   background-color: red;
 }
 

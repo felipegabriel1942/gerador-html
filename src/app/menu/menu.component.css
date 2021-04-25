@@ -3,12 +3,13 @@
   height: 60px;
 }
 
-.menu-item-container {
-  border: 1px solid black;
-  border-radius: 10px;
+.text {
+  height: 60px;
+  font-size: 25px;
+}
+
+.card:hover {
+  background-color: rgb(250, 248, 248);
   cursor: pointer;
 }
 
-.menu-item-container:hover {
-  background-color: rgb(233, 231, 231);
-}

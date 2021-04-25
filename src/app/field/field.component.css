@@ -1,6 +1,7 @@
 #field {
   position: fixed;
   border: 1px solid black;
+  cursor: all-scroll;
 }
 
 .field-corner-resize {
@@ -8,6 +9,10 @@
   width: 10px;
   height: 10px;
   background-color: red;
+}
+
+.field-corner-resize:hover {
+  cursor: nwse-resize;
 }
 
 #field-top-left-resize {

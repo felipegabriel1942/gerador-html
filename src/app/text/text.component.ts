@@ -27,7 +27,6 @@ export class TextComponent implements OnInit {
     this.draggingWindow = true;
     this.text.px = event.clientX;
     this.text.py = event.clientY;
-    console.log(this.draggingWindow, this.text.px, this.text.py);
   }
 
   onWindowDrag(event: MouseEvent): void {
@@ -35,14 +34,13 @@ export class TextComponent implements OnInit {
       return;
     }
 
-    let offsetX = event.clientX - this.text.px;
-    let offsetY = event.clientY - this.text.py;
+    const offsetX = event.clientX - this.text.px;
+    const offsetY = event.clientY - this.text.py;
 
     this.text.x += offsetX;
     this.text.y += offsetY;
     this.text.px = event.clientX;
     this.text.py = event.clientY;
-    console.log('dragging window...');
   }
 
   bottomRightResize(offsetX: number, offsetY: number): void {
@@ -57,7 +55,6 @@ export class TextComponent implements OnInit {
     this.resizer = resizer;
     event.preventDefault();
     event.stopPropagation();
-    console.log('corner clicked...');
   }
 
   @HostListener('document:mousemove', ['$event'])
@@ -66,13 +63,13 @@ export class TextComponent implements OnInit {
       return;
     }
 
-    let offsetX = event.clientX - this.text.px;
-    let offsetY = event.clientY - this.text.py;
+    const offsetX = event.clientX - this.text.px;
+    const offsetY = event.clientY - this.text.py;
 
-    let lastX = this.text.x;
-    let lastY = this.text.y;
-    let pWidth = this.text.width;
-    let pHeight = this.text.height;
+    const lastX = this.text.x;
+    const lastY = this.text.y;
+    const pWidth = this.text.width;
+    const pHeight = this.text.height;
 
     this.resizer(offsetX, offsetY);
     if (this.area() < this.minArea) {
@@ -91,7 +88,6 @@ export class TextComponent implements OnInit {
   onCornerRelease(event: MouseEvent): void {
     this.draggingWindow = false;
     this.draggingCorner = false;
-    console.log('text released...');
   }
 
   area(): number {

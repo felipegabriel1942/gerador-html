@@ -10,6 +10,7 @@ import { Text } from './models/text.model';
 export class AppComponent implements OnInit {
   fields: Field[] = [];
   texts: Text[] = [];
+  innerWidth = window.innerWidth;
 
   constructor() {}
 
@@ -39,7 +40,7 @@ export class AppComponent implements OnInit {
 
   generateFields(html: string): string {
     this.fields.map((field) => {
-      html += `<div style="top:${field.y};left:${field.x};width:${field.width};height:${field.height};border: 1px solid black;position: absolute;"> </div>`;
+      html += `<div style="top:${field.y};left:${field.x - (this.innerWidth * 0.25)};width:${field.width};height:${field.height};border: 1px solid black;position: absolute;"> </div>`;
     });
 
     return html;
@@ -47,7 +48,7 @@ export class AppComponent implements OnInit {
 
   genereateTexts(html: string): string {
     this.texts.forEach((text) => {
-      html += `<input style="top:${text.y};left:${text.x};width:${text.width};height:${text.height};position: absolute; border: 0; background-color: rgba(0, 0, 0, 0);" value="${text.text}"/>`;
+      html += `<input style="top:${text.y};left:${text.x - (this.innerWidth * 0.25)};width:${text.width};height:${text.height};position: absolute; border: 0; background-color: rgba(0, 0, 0, 0);" value="${text.text}"/>`;
     });
 
     return html;
